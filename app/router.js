@@ -7,6 +7,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('main-menu', { path: '/main-menu' });
+  this.route('play');
 });
 
 export default Router;
