@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import gameRunner from '../services/game-runner';
 
 export default Ember.Route.extend({
 
@@ -6,7 +7,7 @@ export default Ember.Route.extend({
 
     actions: {
         didTransition() {
-            //transition to some route
+            this.get('gameRunner').play()
         }
     }
 });
