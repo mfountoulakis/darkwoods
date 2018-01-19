@@ -1,21 +1,30 @@
 import Ember from 'ember';
 
 export default class {
+    constructor() {
+        var imageSource = 'assets/images/clouds_1.png';
+        this.imageSource = imageSource
 
-    // constructor() {
+        this.cloud_dist = 0.5;  
+        this.cloudx = 2;  
+    }
 
-    // }
+    buildImage(theCanvas, context) {
+        var image = new Image()
+        image.src = this.imageSource
 
-    // buildImage(theCanvas, context, imageSource) {
-    //     var image = new Image()
-    //     image.src = imageSource
-    //     return image
-    // }
+        return image
+    }
 
-    // draw(theCanvas, context) {
-    //     context.drawImage(this.buildImage(theCanvas, context, 'assets/images/ground_1.png'), 0, 0);
-    //     context.drawImage(this.buildImage(theCanvas, context, 'assets/images/ground_2.png'), 0, 0);
-    //     context.drawImage(this.buildImage(theCanvas, context, 'assets/images/ground_3.png'), 0, 0);
+    draw(theCanvas, context) {
+        context.drawImage(this.buildImage(theCanvas, context), this.cloudx, 0, theCanvas.width, theCanvas.height, 0, 0, theCanvas.width, 900);
+    }
 
-    // }
+    update(theCanvas, context) {
+        if ((this.cloudx + this.cloud_dist) > this.cloud_dist)
+            this.cloudx -= this.cloud_dist;
+        else
+            this.cloudx = theCanvas.width
+    }
+
 }

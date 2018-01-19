@@ -11,11 +11,6 @@ export default Ember.Service.extend({
     startUp(theCanvas, context) {
         this.theCanvas = theCanvas
         this.context = context
-
-        console.log(this.theCanvas)
-
-        console.log(this.context)
-
         //INSTANTIATE ALL OBJECTS
         this.load(theCanvas, context);
         //START THE MENU SCREEN GAMELOOP
@@ -33,7 +28,7 @@ export default Ember.Service.extend({
         this.sky = new Sky(this.theCanvas, this.context)
         this.mount = new Mount(this.theCanvas, this.context)
         this.ground = new Ground(this.theCanvas, this.context)
-        // this.clouds = new Cloud(this.theCanvas, this.context)
+        this.clouds = new Cloud(this.theCanvas, this.context)
     },
 
     render(theCanvas, context) {
@@ -41,9 +36,12 @@ export default Ember.Service.extend({
         this.sky.draw(this.theCanvas, this.context);
         this.mount.draw(this.theCanvas, this.context);
         this.ground.draw(this.theCanvas, this.context);
+        this.clouds.draw(this.theCanvas, this.context);
+
     },
 
     update(theCanvas, context) {
+        this.clouds.update(this.theCanvas, this.context);
     },
 
 });
