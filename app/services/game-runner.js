@@ -26,6 +26,8 @@ export default Ember.Service.extend({
 
     AddGameControls() {
         window.addEventListener('keydown', this.controlAction.bind(this));
+        window.addEventListener('keyup', this.controlAction.bind(this));
+
     },
 
     load(theCanvas, context) {
@@ -56,20 +58,37 @@ export default Ember.Service.extend({
     },
 
     update(theCanvas, context) {
-
         this.clouds.update(this.theCanvas, this.context);
         this.ground.update(this.theCanvas, this.context);
         this.kitty.update(this.theCanvas, this.context);
 
     },
 
+
     //GAME CONTROLS
     controlAction(e) {
-        if (e.keyCode === 38) {
-            this.kitty.jump();
-        }
-    }
+        const type = e.type
+        switch (type) {
+            case "keydown":
+                if (e.keyCode === 38) {
+                    this.kitty.jump();
+                }
+                if (e.keyCode === 39) {
+                    console.log(this.context)
+                    this.kitty.move(this.theCanvas, this.context);
+                }
+                break;
+            case "keyup":
+                if (e.keyCode === 39) {
+                    console.log(this.context)
+                    this.kitty.stop(this.theCanvas, this.context);
+                }
+                break;
+            default:
 
+        }
+
+    }
 });
 
 
