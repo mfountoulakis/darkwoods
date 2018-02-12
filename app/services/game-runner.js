@@ -18,7 +18,7 @@ export default Ember.Service.extend({
         //INSTANTIATE ALL OBJECTS
         this.theCanvas.width = 800
         this.theCanvas.height = 1000
-    
+
         this.load(theCanvas, context);
 
         console.log(this.bg.mapRows)
@@ -69,41 +69,42 @@ export default Ember.Service.extend({
 
     play() {
 
-        var FRAME_RATE = 10;
-        var intervalTime = 1000 / FRAME_RATE;
 
-        this.bg.camera.x += this.bg.camera.dx;
-        this.bg.camera.y += this.bg.camera.dy;
+        // console.log("CAMERA.rows ", this.bg.camera.rows)
 
-        console.log("this.bg.camera.X ", this.bg.camera.x)
-        console.log("this.bg.WIDTH ", this.bg.width)
-        console.log("this.bg.WIDTH ", this.bg.camera.width)
+        // var FRAME_RATE = 10;
+        // var intervalTime = 1000 / FRAME_RATE;
 
-        var xDistance = (this.bg.width - this.bg.camera.width) - this.bg.camera.scrollRate;
 
-        console.log("XDISTANCE ", xDistance)
-        console.log("this.bg.camera.x=", this.bg.camera.x);
-        console.log("(this.bg.width - this.bg.camera.width)-this.scrollRate =", xDistance);
 
-        var yDistance = (this.bg.height - this.bg.camera.height) - this.bg.camera.scrollRate;
+        // console.log("this.bg.camera.X ", this.bg.camera.x)
+        // console.log("this.bg.WIDTH ", this.bg.width)
+        // console.log("this.bg.WIDTH ", this.bg.camera.width)
 
-        console.log("this.bg.camera.y=", this.bg.camera.y);
-        console.log("(this.bg.height - this.bg.camera.height)-this.scrollRate =", yDistance);
+        // // var xDistance = (this.bg.width - this.bg.camera.width) - this.bg.camera.scrollRate;
 
-        console.log("colBuffer=", this.bg.camera.colBuffer);
-        console.log("rowBuffer", this.bg.camera.rowBuffer);
+        // // console.log("XDISTANCE ", xDistance)
+        // console.log("this.bg.camera.x=", this.bg.camera.x);
 
-        this.bg.camera.x += this.bg.camera.dx;
-        this.bg.camera.y += this.bg.camera.dy;
+        // console.log("ThIS.BG.WIDTH ", this.bg.width)
+        // console.log("ThIS.BG.Camera.WIDTH ", this.bg.camera.width)
+        // console.log("ThIS.BG.Camera.SCROLLRATE ", this.bg.camera.scrollRate)
 
-        this.context.setTransform(1, 0, 0, 1, 0, 0);
+        // // console.log("(this.bg.width - this.bg.camera.width)-this.scrollRate =", xDistance);
 
-        this.context.translate(-this.bg.camera.x % this.bg.tileWidth, -this.bg.camera.y % this.bg.tileHeight);
+        // // var yDistance = (this.bg.height - this.bg.camera.height) - this.bg.camera.scrollRate;
 
-        this.playing == true
-        // add ingame controls
-        this.kitty.playState()
-        this.ground.playState()
+        // console.log("this.bg.camera.y=", this.bg.camera.y);
+        // // console.log("(this.bg.height - this.bg.camera.height)-this.scrollRate =", yDistance);
+
+        // console.log("colBuffer=", this.bg.camera.colBuffer);
+        // console.log("rowBuffer", this.bg.camera.rowBuffer);
+
+
+        // this.playing == true
+        // // add ingame controls
+        // this.kitty.playState()
+        // this.ground.playState()
 
     },
 

@@ -3,17 +3,17 @@ import Camera from './camera';
 
 export default class {
     constructor(theCanvas, context) {
+        this.camera = new Camera(theCanvas, context);
+
         this.theCanvas = theCanvas
         this.context = context
 
         var imageSource = 'assets/images/bg.png';
         this.imageSource = imageSource
 
-        this.camera = new Camera(theCanvas, context);
-
-        this.rowCtr;
-        this.colCtr;
-        this.tileNum;
+        this.rowCtr = 0;
+        this.colCtr = 0;
+        this.tileNum = 0;
         this.mapIndexOffset = -1;
 
         this.mapRows = 11;
@@ -31,8 +31,12 @@ export default class {
         this.height = this.mapRows * 96;
         this.width = 3000
 
+        console.log(("HELLO ", this.width - this.camera.width) - this.camera.scrollRate);
+
         this.xDistance = (this.width - this.camera.width) - this.camera.scrollRate;
         this.yDistance = (this.height - this.camera.height) - this.camera.scrollRate;
+
+
 
         this.tileMap = [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
         [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
@@ -60,6 +64,14 @@ export default class {
     }
 
     draw() {
+
+        this.camera.x += this.camera.dx;
+        this.camera.y += this.camera.dy;
+
+        this.context.setTransform(1, 0, 0, 1, 0, 0);
+        this.context.translate(-this.camera.x % this.tileWidth, -this.camera.y % this.tileHeight);
+
+
         for (this.rowCtr = 0; this.rowCtr < this.camera.rows + this.camera.rowBuffer; this.rowCtr++) {
             for (this.colCtr = 0; this.colCtr < this.camera.cols + this.camera.colBuffer; this.colCtr++) {
 
