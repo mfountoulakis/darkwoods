@@ -18,24 +18,8 @@ export default Ember.Service.extend({
         //INSTANTIATE ALL OBJECTS
         this.theCanvas.width = 800
         this.theCanvas.height = 1000
-
-        this.positions = [];
-
-        this.tileSheet = new Image();
-        this.tileSheet.src = './assets/images/bg.png';
-
-
+    
         this.load(theCanvas, context);
-
-        // this.tilePoint = {};
-        // this.source = {};
-
-
-        //camera crap
-        // this.bg.camera.rowBuffer = 1;
-        // this.colBuffer = 1;
-        // this.scrollRate = 0.5;
-        //camera crap
 
         console.log(this.bg.mapRows)
         console.log(this.bg.mapCols)
@@ -106,8 +90,8 @@ export default Ember.Service.extend({
         console.log("this.bg.camera.y=", this.bg.camera.y);
         console.log("(this.bg.height - this.bg.camera.height)-this.scrollRate =", yDistance);
 
-        // console.log("colBuffer=", this.bg.camera.colBuffer);
-        // console.log("rowBuffer", this.bg.camera.rowBuffer);
+        console.log("colBuffer=", this.bg.camera.colBuffer);
+        console.log("rowBuffer", this.bg.camera.rowBuffer);
 
         this.bg.camera.x += this.bg.camera.dx;
         this.bg.camera.y += this.bg.camera.dy;
@@ -115,23 +99,6 @@ export default Ember.Service.extend({
         this.context.setTransform(1, 0, 0, 1, 0, 0);
 
         this.context.translate(-this.bg.camera.x % this.bg.tileWidth, -this.bg.camera.y % this.bg.tileHeight);
-
-        // for (rowCtr = 0; rowCtr < this.bg.camera.rows + this.bg.camera.rowBuffer; rowCtr++) {
-        //     for (colCtr = 0; colCtr < this.bg.camera.cols + this.colBuffer; colCtr++) {
-
-        //         tileNum = (this.bg.tileMap[rowCtr + tiley][colCtr + tilex]);
-
-        //         this.tilePoint.x = colCtr * this.bg.tileWidth;
-        //         this.tilePoint.y = rowCtr * this.bg.tileHeight;
-
-        //         this.source.x = Math.floor(tileNum % 20) * 96;
-        //         this.source.y = Math.floor(tileNum / 20) * 96;
-
-        //         this.context.drawImage(this.tileSheet, this.source.x, this.source.y, this.bg.tileWidth,
-        //             this.bg.tileHeight, this.tilePoint.x, this.tilePoint.y,
-        //             this.bg.tileWidth, this.bg.tileHeight);
-        //     }
-        // }
 
         this.playing == true
         // add ingame controls

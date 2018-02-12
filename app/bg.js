@@ -18,7 +18,6 @@ export default class {
 
         this.mapRows = 11;
         this.mapCols = 22;
-        this.scrollRate = 0.5;
 
         this.tileWidth = 96;
         this.tileHeight = 96;
@@ -32,11 +31,8 @@ export default class {
         this.height = this.mapRows * 96;
         this.width = 3000
 
-        this.rowBuffer = 1;
-        this.colBuffer = 1;
-
-        this.xDistance = (this.width - this.camera.width) - this.scrollRate;
-        this.yDistance = (this.height - this.camera.height) - this.scrollRate;
+        this.xDistance = (this.width - this.camera.width) - this.camera.scrollRate;
+        this.yDistance = (this.height - this.camera.height) - this.camera.scrollRate;
 
         this.tileMap = [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
         [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
@@ -65,7 +61,7 @@ export default class {
 
     draw() {
         for (this.rowCtr = 0; this.rowCtr < this.camera.rows + this.camera.rowBuffer; this.rowCtr++) {
-            for (this.colCtr = 0; this.colCtr < this.camera.cols + this.colBuffer; this.colCtr++) {
+            for (this.colCtr = 0; this.colCtr < this.camera.cols + this.camera.colBuffer; this.colCtr++) {
 
                 var tileNum = (this.tileMap[this.rowCtr + this.tiley][this.colCtr + this.tilex]);
 

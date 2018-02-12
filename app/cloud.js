@@ -17,7 +17,7 @@ export default class {
     }
 
     draw(theCanvas, context) {
-        context.drawImage(this.buildImage(theCanvas, context), this.cloudx, 0, theCanvas.width, theCanvas.height, 0, 0, theCanvas.width, 900);
+        // context.drawImage(this.buildImage(theCanvas, context), this.cloudx, 0, theCanvas.width, theCanvas.height, 0, 0, theCanvas.width, 900);
     }
 
     update(theCanvas, context) {

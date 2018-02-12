@@ -16,7 +16,7 @@ export default class {
 
         this.rowBuffer = 1;
         this.colBuffer = 1;
-        this.scrollRate = 0.5;
+        this.scrollRate = 1;
     }
 
     buildImage(theCanvas, context) {
