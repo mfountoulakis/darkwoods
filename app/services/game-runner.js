@@ -27,45 +27,21 @@ export default Ember.Service.extend({
 
         this.load(theCanvas, context);
 
-        this.tilePoint = {};
-        this.source = {};
+        // this.tilePoint = {};
+        // this.source = {};
 
 
         //camera crap
-        this.rowBuffer = 1;
-        this.colBuffer = 1;
-        this.scrollRate = 0.5;
+        // this.bg.camera.rowBuffer = 1;
+        // this.colBuffer = 1;
+        // this.scrollRate = 0.5;
         //camera crap
 
         console.log(this.bg.mapRows)
         console.log(this.bg.mapCols)
 
-        this.world = this.bg
-        this.camera = this.camera
-
-        this.world.cols = this.bg.mapCols
-        this.world.rows = this.bg.mapRows
-        this.world.tileWidth = 96;
-        this.world.tileHeight = 96;
-        this.world.height = this.bg.mapRows * 96;
-        this.world.width = this.bg.mapCols * 96;
-
-        this.camera.height = this.theCanvas.height;
-        this.camera.width = this.theCanvas.width;
-        this.camera.rows = this.camera.height / 96;
-        this.camera.cols = this.camera.width / 96;
-
-        this.camera.dx = 0;
-        this.camera.dy = 0;
-        this.camera.x = 0;
-        this.camera.y = 0;
-
-
-
-        console.log("scrollRate=", this.scrollRate);
-        //START THE MENU SCREEN GAMELOOP
         this.menuGameLoop(theCanvas, context);
-        this.gameLoop(theCanvas, context);
+        // this.gameLoop(theCanvas, context);
 
 
     },
@@ -87,7 +63,7 @@ export default Ember.Service.extend({
     },
 
     load(theCanvas, context) {
-        this.camera = new Camera(this.theCanvas, this.context);
+        // this.bg.camera = new Camera(this.theCanvas, this.context);
         this.bg = new Bg(this.theCanvas, this.context);
         this.sky = new Sky(this.theCanvas, this.context);
         this.mount = new Mount(this.theCanvas, this.context);
@@ -112,52 +88,50 @@ export default Ember.Service.extend({
         var FRAME_RATE = 10;
         var intervalTime = 1000 / FRAME_RATE;
 
-        this.camera.x += this.camera.dx;
-        this.camera.y += this.camera.dy;
+        this.bg.camera.x += this.bg.camera.dx;
+        this.bg.camera.y += this.bg.camera.dy;
 
+        console.log("this.bg.camera.X ", this.bg.camera.x)
+        console.log("this.bg.WIDTH ", this.bg.width)
+        console.log("this.bg.WIDTH ", this.bg.camera.width)
 
-        var xDistance = (this.world.width - this.camera.width) - this.scrollRate;
-        console.log("this.camera.x=", this.camera.x);
-        console.log("(this.world.width - this.camera.width)-this.scrollRate =", xDistance);
+        var xDistance = (this.bg.width - this.bg.camera.width) - this.bg.camera.scrollRate;
 
-        var yDistance = (this.world.height - this.camera.height) - this.scrollRate;
-        console.log("this.camera.y=", this.camera.y);
-        console.log("(this.world.height - this.camera.height)-this.scrollRate =", yDistance);
+        console.log("XDISTANCE ", xDistance)
+        console.log("this.bg.camera.x=", this.bg.camera.x);
+        console.log("(this.bg.width - this.bg.camera.width)-this.scrollRate =", xDistance);
 
-        console.log("colBuffer=", this.colBuffer);
-        console.log("rowBuffer", this.rowBuffer);
+        var yDistance = (this.bg.height - this.bg.camera.height) - this.bg.camera.scrollRate;
 
-        var tilex = Math.floor(this.camera.x / this.world.tileWidth);
-        var tiley = Math.floor(this.camera.y / this.world.tileHeight);
+        console.log("this.bg.camera.y=", this.bg.camera.y);
+        console.log("(this.bg.height - this.bg.camera.height)-this.scrollRate =", yDistance);
 
-        var rowCtr;
-        var colCtr;
-        var tileNum;
+        // console.log("colBuffer=", this.bg.camera.colBuffer);
+        // console.log("rowBuffer", this.bg.camera.rowBuffer);
 
-        this.camera.x += this.camera.dx;
-        this.camera.y += this.camera.dy;
-
+        this.bg.camera.x += this.bg.camera.dx;
+        this.bg.camera.y += this.bg.camera.dy;
 
         this.context.setTransform(1, 0, 0, 1, 0, 0);
 
-        this.context.translate(-this.camera.x % this.world.tileWidth, -this.camera.y % this.world.tileHeight);
+        this.context.translate(-this.bg.camera.x % this.bg.tileWidth, -this.bg.camera.y % this.bg.tileHeight);
 
-        for (rowCtr = 0; rowCtr < this.camera.rows + this.rowBuffer; rowCtr++) {
-            for (colCtr = 0; colCtr < this.camera.cols + this.colBuffer; colCtr++) {
+        // for (rowCtr = 0; rowCtr < this.bg.camera.rows + this.bg.camera.rowBuffer; rowCtr++) {
+        //     for (colCtr = 0; colCtr < this.bg.camera.cols + this.colBuffer; colCtr++) {
 
-                tileNum = (this.world.tileMap[rowCtr + tiley][colCtr + tilex]);
+        //         tileNum = (this.bg.tileMap[rowCtr + tiley][colCtr + tilex]);
 
-                this.tilePoint.x = colCtr * this.world.tileWidth;
-                this.tilePoint.y = rowCtr * this.world.tileHeight;
+        //         this.tilePoint.x = colCtr * this.bg.tileWidth;
+        //         this.tilePoint.y = rowCtr * this.bg.tileHeight;
 
-                this.source.x = Math.floor(tileNum % 20) * 96;
-                this.source.y = Math.floor(tileNum / 20) * 96;
+        //         this.source.x = Math.floor(tileNum % 20) * 96;
+        //         this.source.y = Math.floor(tileNum / 20) * 96;
 
-                this.context.drawImage(this.tileSheet, this.source.x, this.source.y, this.world.tileWidth,
-                    this.world.tileHeight, this.tilePoint.x, this.tilePoint.y,
-                    this.world.tileWidth, this.world.tileHeight);
-            }
-        }
+        //         this.context.drawImage(this.tileSheet, this.source.x, this.source.y, this.bg.tileWidth,
+        //             this.bg.tileHeight, this.tilePoint.x, this.tilePoint.y,
+        //             this.bg.tileWidth, this.bg.tileHeight);
+        //     }
+        // }
 
         this.playing == true
         // add ingame controls
@@ -178,8 +152,8 @@ export default Ember.Service.extend({
     controlAction(e) {
         const type = e.type
 
-        this.camera.dx = 0;
-        this.camera.dy = 0;
+        this.bg.camera.dx = 0;
+        this.bg.camera.dy = 0;
 
         switch (type) {
             case "keydown":
@@ -187,7 +161,7 @@ export default Ember.Service.extend({
                     this.kitty.jump();
                 }
                 if (e.keyCode === 39) {
-                    this.camera.dx = this.scrollRate
+                    this.bg.camera.dx = this.bg.camera.scrollRate
 
                     console.log("KEYPRESS")
                     // this.kitty.move(this.theCanvas, this.context);

@@ -3,6 +3,9 @@ import Camera from './camera';
 
 export default class {
     constructor(theCanvas, context) {
+        this.theCanvas = theCanvas
+        this.context = context
+
         var imageSource = 'assets/images/bg.png';
         this.imageSource = imageSource
 
@@ -17,12 +20,17 @@ export default class {
         this.mapCols = 22;
         this.scrollRate = 0.5;
 
-        // this.world.cols = this.bg.mapCols
-        // this.world.rows = this.bg.mapRows
-        // this.world.tileWidth = 96;
-        // this.world.tileHeight = 96;
+        this.tileWidth = 96;
+        this.tileHeight = 96;
+
+        this.tilePoint = {};
+        this.source = {};
+
+        this.tilex = Math.floor(this.camera.x / this.tileWidth);
+        this.tiley = Math.floor(this.camera.y / this.tileHeight);
+
         this.height = this.mapRows * 96;
-        this.width = this.mapCols * 96;
+        this.width = 3000
 
         this.rowBuffer = 1;
         this.colBuffer = 1;
@@ -53,21 +61,13 @@ export default class {
 
     update(theCanvas, context) {
 
+    }
 
-        context.setTransform(1, 0, 0, 1, 0, 0);
+    draw() {
+        for (this.rowCtr = 0; this.rowCtr < this.camera.rows + this.camera.rowBuffer; this.rowCtr++) {
+            for (this.colCtr = 0; this.colCtr < this.camera.cols + this.colBuffer; this.colCtr++) {
 
-        context.translate(-this.camera.x % this.tileWidth, -this.camera.y % this.tileHeight);
-
-
-
-        console.log("(this.world.width - this.camera.width)-this.scrollRate =", this.xDistance);
-        console.log("(this.world.height - this.camera.height)-this.scrollRate =", this.yDistance);
-
-        console.log("CAMERA.rows ", this.camera.rows)
-        for (this.rowCtr = 0; this.rowCtr < Camera.rows + this.rowBuffer; this.rowCtr++) {
-            for (this.colCtr = 0; this.colCtr < Camera.cols + this.colBuffer; this.colCtr++) {
-
-                tileNum = (this.tileMap[this.rowCtr + tiley][this.colCtr + tilex]);
+                var tileNum = (this.tileMap[this.rowCtr + this.tiley][this.colCtr + this.tilex]);
 
                 this.tilePoint.x = this.colCtr * this.tileWidth;
                 this.tilePoint.y = this.rowCtr * this.tileHeight;
@@ -75,16 +75,12 @@ export default class {
                 this.source.x = Math.floor(tileNum % 20) * 96;
                 this.source.y = Math.floor(tileNum / 20) * 96;
 
-                context.drawImage(this.buildImage(theCanvas, context), this.source.x, this.source.y, this.tileWidth,
+                this.context.drawImage(this.buildImage(), this.source.x, this.source.y, this.tileWidth,
                     this.tileHeight, this.tilePoint.x, this.tilePoint.y,
                     this.tileWidth, this.tileHeight);
             }
         }
 
-
-    }
-
-    draw() {
 
     }
 
