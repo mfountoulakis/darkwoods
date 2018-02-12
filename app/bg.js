@@ -29,7 +29,7 @@ export default class {
         this.tiley = Math.floor(this.camera.y / this.tileHeight);
 
         this.height = this.mapRows * 96;
-        this.width = 3000
+        this.width = this.mapCols * 96;
 
         console.log(("HELLO ", this.width - this.camera.width) - this.camera.scrollRate);
 
@@ -83,7 +83,7 @@ export default class {
                 this.source.x = Math.floor(tileNum % 20) * 96;
                 this.source.y = Math.floor(tileNum / 20) * 96;
 
-                this.context.drawImage(this.buildImage(), this.source.x, this.source.y, this.tileWidth,
+                this.context.drawImage(this.imageSource(), this.source.x, this.source.y, this.tileWidth,
                     this.tileHeight, this.tilePoint.x, this.tilePoint.y,
                     this.tileWidth, this.tileHeight);
             }
