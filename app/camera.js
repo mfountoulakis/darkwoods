@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Bg from './bg';
+// import Bg from './bg';
 
 export default class {
   constructor(theCanvas, context) {

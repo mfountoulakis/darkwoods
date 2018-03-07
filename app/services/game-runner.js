@@ -3,6 +3,9 @@ import Kitty from '../kitty';
 import Sky from '../sky';
 import Cloud from '../cloud';
 import Ground from '../ground';
+import Bg from '../bg';
+import Camera from '../camera';
+
 import Mount from '../mount';
 
 export default Ember.Service.extend({
