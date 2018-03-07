@@ -24,9 +24,6 @@ export default Ember.Service.extend({
 
     this.load(theCanvas, context);
 
-    console.log(this.bg.mapRows);
-    console.log(this.bg.mapCols);
-
     this.menuGameLoop(theCanvas, context);
     // this.gameLoop(theCanvas, context);
   },
@@ -37,7 +34,15 @@ export default Ember.Service.extend({
     this.play();
 
     //check if menu should be rendered
-    window.requestAnimationFrame(this.menuGameLoop.bind(this));
+    window.requestAnimationFrame(this.menuGameLoop.bind(this), this.getDelta());
+  },
+
+  getDelta() {
+    const elapsed = Date.now();
+    const delta = (elapsed - this.before) / 1000;
+    this.before = elapsed;
+
+    console.log(elapsed);
   },
 
   AddGameControls() {
@@ -62,7 +67,7 @@ export default Ember.Service.extend({
     // this.camera.draw(this.theCanvas, this.context);
     this.sky.draw(this.theCanvas, this.context);
     this.mount.draw(this.theCanvas, this.context);
-    this.ground.draw(this.theCanvas, this.context, this.kitty.getKittyX(), this.kitty.Moving());
+    this.ground.draw(this.theCanvas, this.context);
     this.clouds.draw(this.theCanvas, this.context);
     this.kitty.draw(this.theCanvas, this.context);
   },
