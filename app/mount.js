@@ -14,7 +14,7 @@ export default class {
     }
 
     draw(theCanvas, context) {
-        context.drawImage(this.buildImage(theCanvas, context), 0, 0);
+        // context.drawImage(this.buildImage(theCanvas, context), 0, 0);
     }
 
 }

@@ -14,6 +14,9 @@ export default Ember.Component.extend({
         this.set('theCanvas', theCanvas);
         this.set('context', context);
 
+
+
+
         this.get('gameRunner').startUp(theCanvas, context);
     }
 });

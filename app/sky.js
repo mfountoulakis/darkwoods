@@ -8,17 +8,17 @@ export default class {
     }
 
     buildImage(theCanvas, context) {
-        var image = new Image()
-        image.src = this.imageSource
-        return image
+        // var image = new Image()
+        // image.src = this.imageSource
+        // return image
     }
 
     draw(theCanvas, context) {
-        var image = this.buildImage(theCanvas, context);
-        theCanvas.width = image.width
-        theCanvas.height = image.height
+        // var image = this.buildImage(theCanvas, context);
+        // theCanvas.width = image.width
+        // theCanvas.height = image.height
 
-        context.drawImage(image, 0, 0);
+        // context.drawImage(image, 0, 0);
     }
 
 }

@@ -7,6 +7,8 @@ import Bg from '../bg';
 import Camera from '../camera';
 
 import Mount from '../mount';
+// import Bg from '../bg';
+// import Camera from '../camera';
 
 export default Ember.Service.extend({
   playing: false,
