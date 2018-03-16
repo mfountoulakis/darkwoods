@@ -11,6 +11,7 @@ module.exports = function() {
     ctx.lineTo(800, 500);
     ctx.stroke();
   }
+
   return html`
   <body onload=${() => initCanvas()} >
     <canvas id="myCanvas" width="800" height="500" style="border:1px solid #000000;"> 
@@ -18,4 +19,3 @@ module.exports = function() {
   `;
 };
 
-// `<div onload=${() => console.log('loaded!')}></div>`
