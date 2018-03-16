@@ -8,12 +8,12 @@ module.exports = function() {
     var c = document.getElementById('myCanvas');
     var ctx = c.getContext('2d');
     ctx.moveTo(0, 0);
-    ctx.lineTo(200, 100);
+    ctx.lineTo(800, 500);
     ctx.stroke();
   }
   return html`
   <body onload=${() => initCanvas()} >
-    <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"> 
+    <canvas id="myCanvas" width="800" height="500" style="border:1px solid #000000;"> 
   </body>
   `;
 };
