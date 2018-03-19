@@ -7,10 +7,6 @@ var html = require('choo/html');
 
 var main = require('./templates/main.js');
 
-// var state = require('./state');
-
-// var canvas = require('./templates/canvas.js');
-
 // initialize choo
 var app = choo();
 
