@@ -6,6 +6,7 @@ var choo = require('choo');
 var html = require('choo/html');
 
 var main = require('./templates/main.js');
+
 // var state = require('./state');
 
 // var canvas = require('./templates/canvas.js');
@@ -42,14 +43,3 @@ console.log(machine.state); // => 'orange'
 
 machine.next('timer');
 console.log(machine.state); // => 'orange'
-
-// console.log(machine.state); // => 'orange'
-
-// machine.transition('timer');
-// console.log(machine.state); // => 'orange'
-
-// machine.transition('timer');
-// console.log(machine.state); // => 'red'
-
-// machine.transition('timer');
-// console.log(machine.state); // => 'green'
