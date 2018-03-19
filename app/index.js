@@ -1,3 +1,4 @@
+var StateMachine = require('./StateMachine');
 // import choo
 var choo = require('choo');
 
@@ -5,11 +6,14 @@ var choo = require('choo');
 var html = require('choo/html');
 
 var main = require('./templates/main.js');
+// var state = require('./state');
+
 // var canvas = require('./templates/canvas.js');
 
 // initialize choo
 var app = choo();
 
+console.log(app);
 // create a route
 app.route('/', main);
 app.route('/404', notFound);
@@ -27,10 +31,25 @@ function notFound() {
     `;
 }
 
-// function main(state, emit) {
-//   return html`
-//     <body>
-//       <div>ANIMALS</div>
-//     </body>
-//   `;
-// }
+var machine = new StateMachine('green', {
+  green: { timer: 'orange' },
+  orange: { timer: 'red' },
+  red: { timer: 'green' },
+});
+
+machine.next('timer');
+console.log(machine.state); // => 'orange'
+
+machine.next('timer');
+console.log(machine.state); // => 'orange'
+
+// console.log(machine.state); // => 'orange'
+
+// machine.transition('timer');
+// console.log(machine.state); // => 'orange'
+
+// machine.transition('timer');
+// console.log(machine.state); // => 'red'
+
+// machine.transition('timer');
+// console.log(machine.state); // => 'green'
